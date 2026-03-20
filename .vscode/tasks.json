@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Web Server",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"cd \"${workspaceFolder}\"; python -m http.server 8000 2>$null || (echo 'Python not available. Please install Python or use Live Server extension'; Read-Host 'Press Enter to close')"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
