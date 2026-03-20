@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 
-const connectDB = async () => {
+export const connectToDatabase = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI || '', {
+        const uri = process.env.MONGODB_URI || '';
+        if (!uri) {
+            console.warn('MONGODB_URI not set, skipping database connection');
+            return;
+        }
+        await mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -12,5 +17,3 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
-
-export default connectDB;
